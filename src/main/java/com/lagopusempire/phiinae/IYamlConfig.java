@@ -103,7 +103,8 @@ public interface IYamlConfig {
     public Set<String> getConfigurationSection(String key);
     
     /**
-     * Merges yaml data from a template stream into this yaml document.
+     * Merges yaml data from a template stream into this yaml document. 
+     * <b>The InputStream is not closed!</b> You do that yourself.
      * Note that this yaml document takes precedence, so if both this document
      * and the document being merged from (passed as the argument) have the same
      * key, the value

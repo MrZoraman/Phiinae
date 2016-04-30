@@ -21,7 +21,7 @@ public class YamlConfig implements IYamlConfig {
     private final Map<String, Object> root;
     
     /**
-     * Constructor.
+     * Constructor. <b>The InputStream is not closed!</b> You do that yourself.
      * @param fis The InputStream containing yaml contents. This stream better
      * contain yaml formatted contents, or else snakeyaml will throw an ugly
      * exception.

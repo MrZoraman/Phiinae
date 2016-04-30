@@ -25,7 +25,6 @@ public class YamlConfig implements IYamlConfig {
     
     private void mergeMaps(Map<String, Object> root, Map<String, Object> templateRoot) throws YamlMergeException {
         for(Entry<String, Object> entry : templateRoot.entrySet()) {
-            
             Object templateValue = entry.getValue();
             if(templateValue instanceof Map) {
                 Map<String, Object> childMap = null;
@@ -42,11 +41,8 @@ public class YamlConfig implements IYamlConfig {
                 root.put(entry.getKey(), childMap);
             } else if (templateValue instanceof List) {
                 //todo: lists
-            } else {
-                if(!root.containsKey(entry.getKey())) {
-                    root.put(entry.getKey(), templateValue);
-                }
-                //not a container, just a value
+            } else if (!root.containsKey(entry.getKey())){
+                root.put(entry.getKey(), templateValue);
             }
         }
     }

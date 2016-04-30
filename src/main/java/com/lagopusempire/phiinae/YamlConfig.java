@@ -20,6 +20,7 @@ public class YamlConfig implements IYamlConfig {
         this.root = (Map<String, Object>) yaml.load(fis);
     }
     
+    @Override
     public void merge(InputStream templateStream) {
         Yaml template = new Yaml();
         Map<String, Object> templateRoot = (Map<String, Object>) template.load(templateStream);

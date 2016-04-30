@@ -1,6 +1,7 @@
 package com.lagopusempire.phiinae;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Set;
 
@@ -100,6 +101,24 @@ public interface IYamlConfig {
      * @return A set of all the config keys that exist as a child of the key given.
      */
     public Set<String> getConfigurationSection(String key);
+    
+    /**
+     * Merges yaml data from a template stream into this yaml document.
+     * Note that this yaml document takes precedence, so if both this document
+     * and the document being merged from (passed as the argument), the value
+     * from this yaml document will remain. This is useful for updating yaml
+     * config files without overwriting values that the user may have modified.
+     * @param templateStream The stream containing yaml data. It better
+     * be yaml or this method will throw an ugly snakeyaml exception.
+     * @throws YamlMergeException This exception is thrown if there is a
+     * disagreement in major types between the two yaml documents. For instance
+     * if in one document, a key resolves to a value, but in another, a key
+     * resolves to a configuration section with more keys, this exception
+     * will be thrown. Although it is an unmanaged exception, I recommend
+     * catching it if you are using this file as a config file, as you probably
+     * have no idea what the user has done to that thing.
+     */
+    public void merge(InputStream templateStream) throws YamlMergeException;
     
     /**
      * This writes the yaml to an {@link java.io.OutputStream OutputStream}.

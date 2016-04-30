@@ -105,7 +105,8 @@ public interface IYamlConfig {
     /**
      * Merges yaml data from a template stream into this yaml document.
      * Note that this yaml document takes precedence, so if both this document
-     * and the document being merged from (passed as the argument), the value
+     * and the document being merged from (passed as the argument) have the same
+     * key, the value
      * from this yaml document will remain. This is useful for updating yaml
      * config files without overwriting values that the user may have modified.
      * @param templateStream The stream containing yaml data. It better

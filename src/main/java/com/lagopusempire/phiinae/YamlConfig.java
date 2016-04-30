@@ -3,6 +3,7 @@ package com.lagopusempire.phiinae;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import org.yaml.snakeyaml.Yaml;
 
@@ -11,8 +12,35 @@ public class YamlConfig implements IYamlConfig {
     private final Yaml yaml = new Yaml();
     private final Map<String, Object> root;
     
-    public YamlConfig(InputStream is) {
-        this.root = (Map<String, Object>) yaml.load(is);
+    public YamlConfig(InputStream fis) {
+        this.root = (Map<String, Object>) yaml.load(fis);
+    }
+    
+    public void merge(InputStream templateStream) {
+        Yaml template = new Yaml();
+        Map<String, Object> templateRoot = (Map<String, Object>) template.load(templateStream);
+        mergeMaps(root, templateRoot);
+    }
+    
+    private void mergeMaps(Map<String, Object> root, Map<String, Object> templateRoot) {
+        for(Entry<String, Object> entry : templateRoot.entrySet()) {
+            if(root.containsKey(entry.getKey())) {
+                continue;
+            }
+            
+            Object templateValue = entry.getValue();
+            if(templateValue instanceof Map) {
+                Map<String, Object> childMap = new HashMap<>();
+                Map<String, Object> childTemplateMap = (Map<String, Object>) templateValue;
+                mergeMaps(childMap, childTemplateMap);
+                root.put(entry.getKey(), childMap);
+            } else if (templateValue instanceof List) {
+                //todo: lists
+            } else {
+                //not a container, just a value
+                root.put(entry.getKey(), templateValue);
+            }
+        }
     }
     
     private Object resolve(String path, int offset) {

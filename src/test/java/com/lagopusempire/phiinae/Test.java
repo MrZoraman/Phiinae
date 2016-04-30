@@ -52,6 +52,10 @@ public class Test {
         yc.merge(fs2);
         System.out.println(yc);
         
+        System.out.println("---");
+        List<String> stuff = yc.getValue("moom.lol.woow");
+        stuff.forEach(System.out::println);
+        
         File f3 = new File("C:\\Users\\Hiiro\\Desktop\\test3.yaml");
         if(!f3.exists()) {
             f3.createNewFile();

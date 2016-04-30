@@ -91,10 +91,10 @@ public interface IYamlConfig {
     public boolean containsValue(String key);
     
     /**
-     * Gets a configuration section given the key. For instance, (using the test.yaml
-     * in the description of the {@link com.lagopusempire.phiinae.IYamlConfig IYamlConfig})
+     * Gets a configuration section given the key. For instance (using the test.yaml
+     * in the description of the {@link com.lagopusempire.phiinae.IYamlConfig IYamlConfig}), 
      * {@code getConfigurationSection("heres.a")} returns a set containing
-     * {"double", "boolean").
+     * {"double", "boolean"}.
      * @param key The key on where to get the configuration section. See the interface
      * description for more details.
      * @return A set of all the config keys that exist as a child of the key given.

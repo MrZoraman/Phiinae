@@ -1,6 +1,7 @@
 package com.lagopusempire.phiinae;
 
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -22,23 +23,30 @@ public class YamlConfig implements IYamlConfig {
         mergeMaps(root, templateRoot);
     }
     
-    private void mergeMaps(Map<String, Object> root, Map<String, Object> templateRoot) {
+    private void mergeMaps(Map<String, Object> root, Map<String, Object> templateRoot) throws YamlMergeException {
         for(Entry<String, Object> entry : templateRoot.entrySet()) {
-            if(root.containsKey(entry.getKey())) {
-                continue;
-            }
             
             Object templateValue = entry.getValue();
             if(templateValue instanceof Map) {
-                Map<String, Object> childMap = new HashMap<>();
+                Map<String, Object> childMap = null;
+                Object child = root.get(entry.getKey());
+                if(child == null) {
+                    childMap = new HashMap<>();
+                } else if (child instanceof Map){
+                    childMap = (HashMap<String, Object>) child;
+                } else {
+                    throw new YamlMergeException();
+                }
                 Map<String, Object> childTemplateMap = (Map<String, Object>) templateValue;
                 mergeMaps(childMap, childTemplateMap);
                 root.put(entry.getKey(), childMap);
             } else if (templateValue instanceof List) {
                 //todo: lists
             } else {
+                if(!root.containsKey(entry.getKey())) {
+                    root.put(entry.getKey(), templateValue);
+                }
                 //not a container, just a value
-                root.put(entry.getKey(), templateValue);
             }
         }
     }

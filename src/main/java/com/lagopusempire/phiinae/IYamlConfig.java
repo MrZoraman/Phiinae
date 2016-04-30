@@ -65,6 +65,7 @@ public interface IYamlConfig {
      * method.
      */
     public <T> T getValue(String key);
+    
     /**
      * This sets a value in the yaml file to what you would like to. Note that
      * like {@link #getValue(java.lang.String) }, this method deals with both
@@ -79,6 +80,7 @@ public interface IYamlConfig {
      * @param value The value that you want to set.
      */
     public <T> void setValue(String key, T value);
+    
     /**
      * Checks if a value exists at the given key location. You can also check if
      * {@link #getValue(java.lang.String) } returns null or not.
@@ -87,6 +89,7 @@ public interface IYamlConfig {
      * @return True if the value exists, false if the value does not exist.
      */
     public boolean containsValue(String key);
+    
     /**
      * Gets a configuration section given the key. For instance, (using the test.yaml
      * in the description of the {@link com.lagopusempire.phiinae.IYamlConfig IYamlConfig})
@@ -97,6 +100,7 @@ public interface IYamlConfig {
      * @return A set of all the config keys that exist as a child of the key given.
      */
     public Set<String> getConfigurationSection(String key);
+    
     /**
      * This writes the yaml to an {@link java.io.OutputStream OutputStream}.
      * <b>This method does not close the stream you pass it!</b> It is reccomended

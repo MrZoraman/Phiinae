@@ -3,6 +3,7 @@ package com.lagopusempire.phiinae;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -12,16 +13,19 @@ import org.yaml.snakeyaml.Yaml;
 
 public class Test {
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        Yaml yaml = new Yaml();
+//        Yaml yaml = new Yaml();
         String yamlPath = "C:\\Users\\Hiiro\\Desktop\\test.yaml";
         File f = new File(yamlPath);
         FileInputStream fs = new FileInputStream(f);
 //        Object root = yaml.load(fs);
         
-        Yaml yaml2 = new Yaml();
+//        Yaml yaml2 = new Yaml();
         String yaml2Path = "C:\\Users\\Hiiro\\Desktop\\test2.yaml";
         File f2 = new File(yaml2Path);
         FileInputStream fs2 = new FileInputStream(f2);
+        
+        
+        
 //        Object root2 = yaml2.load(fs2);
         
         
@@ -47,6 +51,15 @@ public class Test {
         YamlConfig yc = new YamlConfig(fs);
         yc.merge(fs2);
         System.out.println(yc);
+        
+        File f3 = new File("C:\\Users\\Hiiro\\Desktop\\test3.yaml");
+        if(!f3.exists()) {
+            f3.createNewFile();
+        }
+        
+        FileOutputStream fop = new FileOutputStream(f3);
+        yc.write(fop);
+        fop.close();
 //        
 //        Integer num = yc.getValue("test.num1");
 //        System.out.println(num);

@@ -1,6 +1,9 @@
 package com.lagopusempire.phiinae;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -128,5 +131,12 @@ public class YamlConfig implements IYamlConfig {
     @Override
     public String toString() {
         return yaml.dumpAsMap(root);
+    }
+
+    @Override
+    public void write(OutputStream stream) throws IOException {
+        byte[] fileBytes = toString().getBytes();
+        stream.write(fileBytes);
+        stream.flush();
     }
 }

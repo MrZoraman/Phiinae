@@ -24,6 +24,14 @@ import java.util.Set;
  *   a:
  *     double: 3.14
  *     boolean: true
+ * someList:
+ * - itemA
+ * - itemB
+ * - itemC
+ * numList:
+ * - 5
+ * - 6
+ * - 8
  * </pre>
  * The following keys map to their respective values:
  * <pre>
@@ -33,6 +41,8 @@ import java.util.Set;
  * getValue("stuff");//I am a string
  * getValue("heres.a.double");//3.14
  * getValue("heres.a.boolean");//true
+ * getValue("someList");//List<String> with ["itemA", "itemB", "ItemC"]
+ * getValue("numList");//List<Integer> with [5, 6, 8]
  * }
  * </pre>
  * @author Zora
@@ -73,8 +83,8 @@ public interface IYamlConfig {
      * primitive types, their wrappers, and strings. Due to the conveniences
      * of java, primitive types and their wrappers can be used interchangably.
      * @param <T> The type of the data you are setting. Because <b>This library
-     * only works with primitive types and strings</b>, there should not be any
-     * ambiguity with what the type is. If there is though, for whatever reason,
+     * only works with primitive types, strings, and Lists of primitive types</b>, 
+     * there should not be any ambiguity with what the type is. If there is though,
      * be sure to cast to the desired type.
      * @param key The key on where to locate the desired value. See the interface
      * description for more details.

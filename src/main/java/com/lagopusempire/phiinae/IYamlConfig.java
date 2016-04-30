@@ -8,9 +8,10 @@ import java.util.Set;
  * A simple snakeyaml wrapper that makes reading and writing yaml data easier.
  * You might find that this interface works similarly to other apis you
  * might have used in the past.
- * 
+ * <br>
  * The library makes extensive use of keys. To best explain how the keys work,
  * here are a few examples:
+ * <br>
  * test.yaml:
  * <pre>
  * some:
@@ -44,7 +45,6 @@ public interface IYamlConfig {
      * If the compiler says something about the return type being ambiguous,
      * you will need to cast to the wrapper class of the type you plan on
      * retrieving.
-     * <br>
      * Here are some example usages:
      * <pre>
      * {@code 
@@ -100,16 +100,16 @@ public interface IYamlConfig {
     /**
      * This writes the yaml to an {@link java.io.OutputStream OutputStream}.
      * <b>This method does not close the stream you pass it!</b> It is reccomended
-     * that you use a try-with-resources to automatically close the streamm.
+     * that you use a try-with-resources to automatically close the stream.
      * <br>
      * Recommended usage (try-with-resources):
-     * <br>
      * <pre>
      * {@code 
      * try(FileOutputStream fop = new FileOutputStream(new File("test.yaml"))) {
      *     yamlConfig.write(fop);
      * } catch (IOException e) {
      *     e.printStackTrace();
+     * }
      * }
      * </pre>
      * Of course, please do not just throw a stack trace. Sure it works, but

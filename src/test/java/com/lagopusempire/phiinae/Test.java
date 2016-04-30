@@ -57,6 +57,8 @@ public class Test {
             f3.createNewFile();
         }
         
+//        System.out.println(yc.getValue("moom.saber"));
+        
         FileOutputStream fop = new FileOutputStream(f3);
         yc.write(fop);
         fop.close();

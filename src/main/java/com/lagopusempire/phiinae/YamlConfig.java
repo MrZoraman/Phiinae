@@ -1,6 +1,7 @@
 package com.lagopusempire.phiinae;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +41,24 @@ public class YamlConfig implements IYamlConfig {
                 mergeMaps(childMap, childTemplateMap);
                 root.put(entry.getKey(), childMap);
             } else if (templateValue instanceof List) {
-                //todo: lists
+                Object child = root.get(entry.getKey());
+                List<String> childList = null;
+                if(child == null) {
+                    childList = new ArrayList();
+                } else if (child instanceof List) {
+                    childList = (List<String>) child;
+                } else {
+                    throw new YamlMergeException();
+                }
+                List<String> childTemplateList = (List<String>) templateValue;
+                for(String item : childTemplateList) {
+                    if(childList.contains(item)) {
+                        continue;
+                    }
+                    
+                    childList.add(item);
+                }
+                root.put(entry.getKey(), childList);
             } else if (!root.containsKey(entry.getKey())){
                 root.put(entry.getKey(), templateValue);
             }

@@ -61,7 +61,7 @@ public class YamlConfigTest {
     public void testGetInt() {
         Integer num = yamlConfig.getValue("num");
         assertNotNull(num);
-        assertEquals(1, num.intValue());
+        assertEquals(5, num.intValue());
     }
     
     /**
@@ -139,14 +139,5 @@ public class YamlConfigTest {
         String[] configSectionArray = configurationSection.toArray(new String[0]);
         String[] expected = new String[]{"child", "child2", "child3"};
         assertArrayEquals(expected, configSectionArray);
-    }
-
-    /**
-     * Test of toString method, of class YamlConfig.
-     */
-    @Test
-    public void testToString() {
-        String str = yamlConfig.toString();
-        assertEquals(YAML_DATA, str);
     }
 }

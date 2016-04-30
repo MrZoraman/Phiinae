@@ -11,11 +11,21 @@ import java.util.Map.Entry;
 import java.util.Set;
 import org.yaml.snakeyaml.Yaml;
 
+/**
+ * A simple implementation of {@link com.lagopusempire.phiinae.IYamlConfig IYamlConfig}.
+ * @author Zora
+ */
 public class YamlConfig implements IYamlConfig {
     
     private final Yaml yaml = new Yaml();
     private final Map<String, Object> root;
     
+    /**
+     * Constructor.
+     * @param fis The InputStream containing yaml contents. This stream better
+     * contain yaml formatted contents, or else snakeyaml will throw an ugly
+     * exception.
+     */
     public YamlConfig(InputStream fis) {
         this.root = (Map<String, Object>) yaml.load(fis);
     }

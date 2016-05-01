@@ -47,11 +47,24 @@ public class YamlConfigTest {
     public void testMerge() throws IOException {
         String otherYamlData = "merged: true";
         try (InputStream stream = new ByteArrayInputStream(otherYamlData.getBytes(StandardCharsets.UTF_8))) {
-            yamlConfig.merge(stream);
+            boolean result = yamlConfig.merge(stream);
+            assertEquals(true, result);
         }
         Boolean result = yamlConfig.getValue("merged");
         assertNotNull(result);
         assertEquals(true, result);
+    }
+    
+    /**
+     * Test that merge that doesn't do anything returns false
+     * @throws IOException 
+     */
+    @Test
+    public void testFalseMerge() throws IOException {
+        try (InputStream stream = new ByteArrayInputStream(YAML_DATA.getBytes(StandardCharsets.UTF_8))) {
+            boolean result = yamlConfig.merge(stream);
+            assertEquals(false, result);
+        }
     }
 
     /**

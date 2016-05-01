@@ -130,8 +130,10 @@ public interface IYamlConfig {
      * will be thrown. Although it is an unmanaged exception, I recommend
      * catching it if you are using this file as a config file, as you probably
      * have no idea what the user has done to that thing.
+     * @return True if the contents of this yaml data was changed, false if nothing
+     * happened.
      */
-    public void merge(InputStream templateStream) throws YamlMergeException;
+    public boolean merge(InputStream templateStream) throws YamlMergeException;
     
     /**
      * This writes the yaml to an {@link java.io.OutputStream OutputStream}.

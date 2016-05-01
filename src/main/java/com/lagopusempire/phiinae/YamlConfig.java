@@ -31,13 +31,14 @@ public class YamlConfig implements IYamlConfig {
     }
     
     @Override
-    public void merge(InputStream templateStream) {
+    public boolean merge(InputStream templateStream) {
         Yaml template = new Yaml();
         Map<String, Object> templateRoot = (Map<String, Object>) template.load(templateStream);
-        mergeMaps(root, templateRoot);
+        return mergeMaps(root, templateRoot);
     }
     
-    private void mergeMaps(Map<String, Object> root, Map<String, Object> templateRoot) throws YamlMergeException {
+    private boolean mergeMaps(Map<String, Object> root, Map<String, Object> templateRoot) throws YamlMergeException {
+        boolean changed = false;
         for(Entry<String, Object> entry : templateRoot.entrySet()) {
             Object templateValue = entry.getValue();
             if(templateValue instanceof Map) {
@@ -51,7 +52,7 @@ public class YamlConfig implements IYamlConfig {
                     throw new YamlMergeException();
                 }
                 Map<String, Object> childTemplateMap = (Map<String, Object>) templateValue;
-                mergeMaps(childMap, childTemplateMap);
+                changed |= mergeMaps(childMap, childTemplateMap);
                 root.put(entry.getKey(), childMap);
             } else if (templateValue instanceof List) {
                 Object child = root.get(entry.getKey());
@@ -70,12 +71,15 @@ public class YamlConfig implements IYamlConfig {
                     }
                     
                     childList.add(item);
+                    changed = true;
                 }
                 root.put(entry.getKey(), childList);
             } else if (!root.containsKey(entry.getKey())){
                 root.put(entry.getKey(), templateValue);
+                changed = true;
             }
         }
+        return changed;
     }
     
     private Object resolve(String path, int offset) {

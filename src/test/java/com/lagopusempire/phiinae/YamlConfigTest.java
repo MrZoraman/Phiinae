@@ -115,6 +115,16 @@ public class YamlConfigTest {
         data = yamlConfig.getValue("parent.child");
         assertEquals(24, data);
     }
+    
+    /**
+     * Test of setValue method, of class YamlConfig.
+     */
+    @Test
+    public void testRemoveValue() {
+        assertTrue(yamlConfig.containsValue("parent.child"));
+        yamlConfig.setValue("parent.child", null);
+        assertFalse(yamlConfig.containsValue("parent.child"));
+    }
 
     /**
      * Test of containsValue method, of class YamlConfig.

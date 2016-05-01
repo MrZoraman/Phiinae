@@ -72,7 +72,7 @@ public interface IYamlConfig {
      * @param key The key on where to locate the desired value. See the interface
      * description for more details.
      * @return the value if it is found, or null if the key is not found. You
-     * can either test if this method is null, or call the {@link #containsValue(java.lang.String) }
+     * can either test if this method is null, or call the {@link #containsKey(java.lang.String) }
      * method.
      */
     public <T> T getValue(String key);
@@ -98,20 +98,20 @@ public interface IYamlConfig {
      * {@link #getValue(java.lang.String) } returns null or not.
      * @param key The key on where to check if a value exists or not. See the interface
      * description for more details.
-     * @return True if the value exists, false if the value does not exist.
+     * @return True if a value at the given key exists, false if the key does not exist.
      */
-    public boolean containsValue(String key);
+    public boolean containsKey(String key);
     
     /**
-     * Gets a configuration section given the key. For instance (using the test.yaml
+     * Gets a key's children. For instance (using the test.yaml
      * in the description of the {@link com.lagopusempire.phiinae.IYamlConfig IYamlConfig}), 
-     * {@code getConfigurationSection("heres.a")} returns a set containing
+     * this method would return a set containing
      * {"double", "boolean"}.
-     * @param key The key on where to get the configuration section. See the interface
+     * @param key The key on for which to retrieve its children. See the interface
      * description for more details.
      * @return A set of all the config keys that exist as a child of the key given.
      */
-    public Set<String> getConfigurationSection(String key);
+    public Set<String> getChildren(String key);
     
     /**
      * Merges yaml data from a template stream into this yaml document. 
@@ -126,7 +126,7 @@ public interface IYamlConfig {
      * @throws YamlMergeException This exception is thrown if there is a
      * disagreement in major types between the two yaml documents. For instance
      * if in one document, a key resolves to a value, but in another, a key
-     * resolves to a configuration section with more keys, this exception
+     * contains children, this exception
      * will be thrown. Although it is an unmanaged exception, I recommend
      * catching it if you are using this file as a config file, as you probably
      * have no idea what the user has done to that thing.

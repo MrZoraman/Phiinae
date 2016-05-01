@@ -128,12 +128,12 @@ public class YamlConfig implements IYamlConfig {
     }
 
     @Override
-    public boolean containsValue(String key) {
+    public boolean containsKey(String key) {
         return resolve(key, 0) != null;
     }
 
     @Override
-    public Set<String> getConfigurationSection(String key) {
+    public Set<String> getChildren(String key) {
         Object value = resolve(key, 0);
         if(!(value instanceof Map)) {
             return null;

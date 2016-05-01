@@ -121,33 +121,33 @@ public class YamlConfigTest {
      */
     @Test
     public void testRemoveValue() {
-        assertTrue(yamlConfig.containsValue("parent.child"));
+        assertTrue(yamlConfig.containsKey("parent.child"));
         yamlConfig.setValue("parent.child", null);
-        assertFalse(yamlConfig.containsValue("parent.child"));
+        assertFalse(yamlConfig.containsKey("parent.child"));
     }
 
     /**
-     * Test of containsValue method, of class YamlConfig.
+     * Test of containsKey method, of class YamlConfig.
      */
     @Test
-    public void testContainsValue() {
-        assertTrue(yamlConfig.containsValue("parent.child"));
-        assertFalse(yamlConfig.containsValue("parent.nochild"));
+    public void testContainsKey() {
+        assertTrue(yamlConfig.containsKey("parent.child"));
+        assertFalse(yamlConfig.containsKey("parent.nochild"));
         
         assertNotNull(yamlConfig.getValue("parent.child"));
         assertNull(yamlConfig.getValue("parent.nochild"));
     }
 
     /**
-     * Test of getConfigurationSection method, of class YamlConfig.
+     * Test of getChildren method, of class YamlConfig.
      */
     @Test
-    public void testGetConfigurationSection() {
-        Set<String> configurationSection = yamlConfig.getConfigurationSection("parent");
-        assertNotNull(configurationSection);
-        assertEquals(3, configurationSection.size());
-        String[] configSectionArray = configurationSection.toArray(new String[0]);
+    public void testGetChildren() {
+        Set<String> children = yamlConfig.getChildren("parent");
+        assertNotNull(children);
+        assertEquals(3, children.size());
+        String[] childrenArray = children.toArray(new String[0]);
         String[] expected = new String[]{"child", "child2", "child3"};
-        assertArrayEquals(expected, configSectionArray);
+        assertArrayEquals(expected, childrenArray);
     }
 }

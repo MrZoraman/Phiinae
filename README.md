@@ -111,6 +111,6 @@ So, once you've had your fun, and it's time to save back to the disk, the follow
 try(FileOutputStream fop = new FileOutputStream(new File("test.yaml"))) {
     yamlConfig.write(fop);
 } catch (IOException e) {
-    e.printStackTrace();
+    //uh oh...
 }
 ```

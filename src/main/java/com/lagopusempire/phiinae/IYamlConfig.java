@@ -88,7 +88,8 @@ public interface IYamlConfig {
      * be sure to cast to the desired type.
      * @param key The key on where to locate the desired value. See the interface
      * description for more details.
-     * @param value The value that you want to set.
+     * @param value The value that you want to set. <b>If value is null, then the key
+     * will be removed from the yaml file if it exists.</b>
      */
     public <T> void setValue(String key, T value);
     

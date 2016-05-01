@@ -45,10 +45,10 @@ some:
 another:
   value: 5
 stuff: 'I am a string'
-  heres:
-    a:
-      double: 3.14
-      boolean: true
+heres:
+  a:
+    double: 3.14
+    boolean: true
 someList:
 - itemA
 - itemB

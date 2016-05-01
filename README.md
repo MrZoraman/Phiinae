@@ -95,10 +95,10 @@ try (FileInputStream fis = new FileInputStream(new File("template.yaml"))) {
     //uh oh...
 }
 ```
-Now, the yamlConfig will contain the following data:
+Now, the yamlConfig will contain the following data (assuming you've followed the 'tutorial' up to this point):
 ```yaml
 some:
-  value: 2
+  value: 200
   string: 'hello'
 another:
   value: 5

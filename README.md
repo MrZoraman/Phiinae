@@ -33,7 +33,7 @@ First, you will want an InputStream that contains your YAML data. For this examp
 IYamlConfig yamlConfig = null;
 try (FileInputStream fis = new FileInputStream(new File("test.yaml"))) {
     yamlConfig = new YamlConfig(fis);
-} catch (IOexception e) {
+} catch (IOException e) {
     //uh oh...
 }
 ```
@@ -91,7 +91,7 @@ You can 'merge' (note: I don't think this is merging like how the official yaml 
 ```java
 try (FileInputStream fis = new FileInputStream(new File("template.yaml"))) {
     yamlConfig.merge(fis);
-} catch (IOexception e) {
+} catch (IOException e) {
     //uh oh...
 }
 ```

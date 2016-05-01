@@ -69,7 +69,7 @@ yamlConfig.getValue("heres.a.boolean");//true
 yamlConfig.getValue("someList");//List<String> with ["itemA", "itemB", "ItemC"]
 yamlConfig.getValue("numList");//List<Integer> with [5, 6, 8]
 ```
-You might also want to see what child nodes a parent node has. That can be done with the getConfigurationSection() method!
+You might also want to see what child nodes a parent node has. That can be done with the getChildren() method!
 ```java
 Set<String> children = yamlConfig.getChildren("heres.a");
 //set contains {"double", "boolean"}

@@ -16,14 +16,14 @@ Add this to your dependencies:
 <dependency>
     <groupId>com.lagopusempire</groupId>
     <artifactId>Phiinae</artifactId>
-    <version>1.0</version>
+    <version>2.0</version>
 </dependency>
 ```
 
 ## JavaDocs
 Most of what the javadocs have to say is written below.
 
-Javadocs found [here](http://jd.lagopusempire.com/phiinae/1.0/)!
+Javadocs found [here](http://jd.lagopusempire.com/phiinae/2.0/)!
 
 ## Loading
 This is a very simple library that makes reading and writing from yaml files a lot easier! It is mainly designed for configuration files, but it can probably be used for other things as well.
@@ -71,13 +71,22 @@ yamlConfig.getValue("numList");//List<Integer> with [5, 6, 8]
 ```
 You might also want to see what child nodes a parent node has. That can be done with the getConfigurationSection() method!
 ```java
-Set<String> configSection = yamlConfig.getConfigurationSection("heres.a");
+Set<String> children = yamlConfig.getChildren("heres.a");
 //set contains {"double", "boolean"}
+```
+If you want to check if a key exists, there is a method for that:
+```java
+yamlConfig.containsKey("some.value");//returns true
+yamlConfig.containsKey("does.not.exist");//returns false
 ```
 ## Setting Values
 Reading is only half the fun though. Just like how you can read data, you can write data as well!
 ```java
 yamlConfig.setValue("some.value", 200);//some.value is now 200
+```
+If you want to unset a value, simply pass null to the setValue method. It will be completely removed from the yaml file in memory. If a parent key is set to null, all of its children will be erased as well.
+```java
+yamlConfig.setValue("numList", null);//numList is now gone.
 ```
 ## Merging
 If you plan on using this library for configuration purposes, you will find the following feature especially useful! Phiinae has the ability to merge two yaml files together! However, it will keep any data from the first, and only move data from the second file if it is not contained in the first file. This is useful for updating config files without overwriting/deleting the user's settings. Here is how it is done:

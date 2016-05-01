@@ -16,14 +16,14 @@ Add this to your dependencies:
 <dependency>
     <groupId>com.lagopusempire</groupId>
     <artifactId>Phiinae</artifactId>
-    <version>2.0</version>
+    <version>2.1</version>
 </dependency>
 ```
 
 ## JavaDocs
 Most of what the javadocs have to say is written below.
 
-Javadocs found [here](http://jd.lagopusempire.com/phiinae/2.0/)!
+Javadocs found [here](http://jd.lagopusempire.com/phiinae/2.1/)!
 
 ## Loading
 This is a very simple library that makes reading and writing from yaml files a lot easier! It is mainly designed for configuration files, but it can probably be used for other things as well.
@@ -104,6 +104,8 @@ try (FileInputStream fis = new FileInputStream(new File("template.yaml"))) {
     //uh oh...
 }
 ```
+Note that the merge method returns true if the yaml data was changed and false if nothing was merged over.
+
 Now, the yamlConfig will contain the following data (assuming you've followed the 'tutorial' up to this point):
 ```yaml
 some:

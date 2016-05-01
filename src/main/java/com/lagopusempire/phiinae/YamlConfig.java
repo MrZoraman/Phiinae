@@ -119,7 +119,11 @@ public class YamlConfig implements IYamlConfig {
             Map<String, Object> map = (Map<String, Object>) node;
             String[] parts = key.split("\\.");
             String mapKey = parts[parts.length - 1];
-            map.put(mapKey, value);
+            if(value == null) {
+                map.remove(mapKey);
+            } else {
+                map.put(mapKey, value);
+            }
         }
     }
 

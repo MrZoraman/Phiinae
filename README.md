@@ -8,7 +8,7 @@ Add this to your repos:
 ```xml
 <repository>
     <id>lago-repo</id>
-    <url>http://repo.lagopusempire.com:3000</url>
+    <url>http://repo.lagopusempire.com</url>
 </repository>
 ```
 Add this to your dependencies:

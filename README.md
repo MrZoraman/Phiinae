@@ -117,7 +117,7 @@ another:
 ```
 note that some.string was moved over into the yaml config, but some.value was not (because it already existed in the original yaml data)!
 ## Saving
-So, once you've had your fun, and it's time to save back to the disk, the following code will do what you want:
+Once you've had your fun and it's time to save back to the disk, the following code will do what you want:
 ```java
 try(FileOutputStream fop = new FileOutputStream(new File("test.yaml"))) {
     yamlConfig.write(fop);

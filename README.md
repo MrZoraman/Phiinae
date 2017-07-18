@@ -16,8 +16,8 @@ Add this to your dependencies:
 ```xml
 <dependency>
     <groupId>com.lagopusempire</groupId>
-    <artifactId>LagopusCommandSystem</artifactId>
-    <version>2.0.0</version>
+    <artifactId>Phiinae</artifactId>
+    <version>2.1</version>
 </dependency>
 ```
 

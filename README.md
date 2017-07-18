@@ -8,22 +8,23 @@ Add this to your repos:
 ```xml
 <repository>
     <id>lago-repo</id>
-    <url>http://repo.lagopusempire.com</url>
+    <name>Lagopus Empire Repo-releases</name>
+    <url>https://repo.lagopusempire.com/artifactory/libs-release-local</url>
 </repository>
 ```
 Add this to your dependencies:
 ```xml
 <dependency>
     <groupId>com.lagopusempire</groupId>
-    <artifactId>Phiinae</artifactId>
-    <version>2.1</version>
+    <artifactId>LagopusCommandSystem</artifactId>
+    <version>2.0.0</version>
 </dependency>
 ```
 
 ## JavaDocs
 Most of what the javadocs have to say is written below.
 
-Javadocs found [here](http://jd.lagopusempire.com/phiinae/2.1/)!
+Javadocs found [here](http://jd.lagopusempire.com/phiinae/2.1/)! (broken for now...)
 
 ## Loading
 This is a very simple library that makes reading and writing from yaml files a lot easier! It is mainly designed for configuration files, but it can probably be used for other things as well.
